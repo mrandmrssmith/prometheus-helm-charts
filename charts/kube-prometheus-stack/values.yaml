@@ -5,18 +5,30 @@
 # Karpenter provisioner parameters
 karpenter:
   enabled: false
-  taints: []
-  requirements:
-    instanceTypes: []
-    regions: []
-    arch: []
-    capacityTypes: []
-  limits:
-    cpu:
-    memory:
-  provider: 
-    subnetSelector: {}
-    securityGroupSelector: {}
+  ec2NodeClass:
+    amiFamily: ""
+    subnetSelectorTerms:
+      - tags: {}
+    securityGroupSelectorTerms:
+      - tags: {}
+    tags: {}
+    role: ""
+  nodePool:
+    clusterName: ""
+    taints: []
+    requirements:
+      instanceTypes: []
+      zones: []
+      arch: []
+      capacityTypes: []
+    limits:
+      cpu: ""
+      memory: ""
+    disruption:
+      consolidationPolicy: "WhenEmpty"
+      consolidateAfter: 600s
+      expireAfter: "Never"
+  
 
 ## Provide a name in place of kube-prometheus-stack for `app:` labels
 ##
