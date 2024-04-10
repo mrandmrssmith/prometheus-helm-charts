@@ -11,7 +11,6 @@ karpenter:
       - tags: {}
     securityGroupSelectorTerms:
       - tags: {}
-    tags: {}
     role: ""
   nodePool:
     clusterName: ""
@@ -22,11 +21,11 @@ karpenter:
       arch: []
       capacityTypes: []
     limits:
-      cpu: ""
-      memory: ""
+      cpu: "1000000m"
+      memory: "100Gi"
     disruption:
       consolidationPolicy: "WhenEmpty"
-      consolidateAfter: 600s
+      consolidateAfter: "600s"
       expireAfter: "Never"
   
 

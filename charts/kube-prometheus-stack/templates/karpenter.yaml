@@ -7,10 +7,9 @@ metadata:
 spec:
   amiFamily: {{ .Values.karpenter.ec2NodeClass.amiFamily }}
   subnetSelectorTerms:
-    - tags: {{ .Values.karpenter.ec2NodeClass.subnetSelector }}
+    - tags: {{- toYaml .Values.karpenter.ec2NodeClass.subnetSelector | nindent 4}}
   securityGroupSelectorTerms:
-    - tags: {{ .Values.karpenter.ec2NodeClass.securityGroupSelector }}
-  tags: {{ .Values.karpenter.ec2NodeClass.tags }}
+    - tags: {{- toYaml .Values.karpenter.ec2NodeClass.securityGroupSelector | nindent 4}}
   role: {{ .Values.karpenter.ec2NodeClass.role }}
 ---
 apiVersion: karpenter.sh/v1beta1
