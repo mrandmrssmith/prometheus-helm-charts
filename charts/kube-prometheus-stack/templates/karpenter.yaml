@@ -36,7 +36,6 @@ spec:
           operator: In
           values: {{ .Values.karpenter.nodePool.requirements.zones | toJson }}
   limits:
-    resources:
-      cpu: {{ .Values.karpenter.nodePool.limits.cpu }}
-      memory: {{ .Values.karpenter.nodePool.limits.memory }}
+    cpu: {{ .Values.karpenter.nodePool.limits.cpu }}
+    memory: {{ .Values.karpenter.nodePool.limits.memory }}
 {{- end }}
