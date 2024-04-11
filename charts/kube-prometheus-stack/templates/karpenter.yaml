@@ -6,10 +6,8 @@ metadata:
   name: {{ .Release.Name }}-karpenter-ec2nodeclass
 spec:
   amiFamily: {{ .Values.karpenter.ec2NodeClass.amiFamily }}
-  subnetSelectorTerms:
-    - tags: {{- toYaml .Values.karpenter.ec2NodeClass.subnetSelectorTerms | nindent 4}}
-  securityGroupSelectorTerms:
-    - tags: {{- toYaml .Values.karpenter.ec2NodeClass.securityGroupSelectorTerms | nindent 4}}
+  subnetSelectorTerms: {{- toYaml .Values.karpenter.ec2NodeClass.subnetSelectorTerms | nindent 4}}
+  securityGroupSelectorTerms: {{- toYaml .Values.karpenter.ec2NodeClass.securityGroupSelectorTerms | nindent 4}}
   role: {{ .Values.karpenter.ec2NodeClass.role }}
 ---
 apiVersion: karpenter.sh/v1beta1
