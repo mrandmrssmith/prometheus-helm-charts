@@ -19,7 +19,6 @@ spec:
     metadata:
       labels:
         tier: karpenter-prometheus
-        app: prometheus
     spec:
       nodeClassRef:
         apiVersion: karpenter.k8s.aws/v1beta1
