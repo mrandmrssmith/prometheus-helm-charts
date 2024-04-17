@@ -23,11 +23,6 @@ karpenter:
     limits:
       cpu: "1000000m"
       memory: "100Gi"
-    disruption:
-      consolidationPolicy: "WhenEmpty"
-      consolidateAfter: "600s"
-      expireAfter: "Never"
-  
 
 ## Provide a name in place of kube-prometheus-stack for `app:` labels
 ##

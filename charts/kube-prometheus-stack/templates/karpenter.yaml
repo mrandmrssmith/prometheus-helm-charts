@@ -24,7 +24,6 @@ spec:
         apiVersion: karpenter.k8s.aws/v1beta1
         kind: EC2NodeClass
         name: {{ .Release.Name }}-karpenter-ec2nodeclass
-      taints: {{ .Values.karpenter.nodePool.taints | toYaml | nindent 8 }}
       requirements:
         - key: "kubernetes.io/arch"
           operator: In
