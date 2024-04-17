@@ -18,7 +18,7 @@ spec:
   template:
     metadata:
       labels:
-        tier: karpenter-prometheus
+        type: karpenter
     spec:
       nodeClassRef:
         apiVersion: karpenter.k8s.aws/v1beta1
