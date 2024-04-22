@@ -13,9 +13,9 @@ spec:
     {{- .Values.karpenter.ec2NodeClass.userData | nindent 4 }}
 ---
 apiVersion: karpenter.sh/v1beta1
-kind: NodePool
+kind: nodePool
 metadata:
-  name: {{ .Values.karpenter.nodepool.name }}
+  name: {{ .Values.karpenter.nodePool.name }}
 spec:
   template:
     metadata:
