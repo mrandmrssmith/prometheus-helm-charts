@@ -3,27 +3,27 @@
 apiVersion: karpenter.k8s.aws/v1beta1
 kind: EC2NodeClass
 metadata:
-  name: {{ .Release.Name }}-karpenter-ec2nodeclass
+  name: {{ .Values.karpenter.ec2NodeClass.name }}
 spec:
   amiFamily: {{ .Values.karpenter.ec2NodeClass.amiFamily }}
   subnetSelectorTerms: {{- toYaml .Values.karpenter.ec2NodeClass.subnetSelectorTerms | nindent 4}}
   securityGroupSelectorTerms: {{- toYaml .Values.karpenter.ec2NodeClass.securityGroupSelectorTerms | nindent 4}}
   role: {{ .Values.karpenter.ec2NodeClass.role }}
+  userData: |
+    {{- .Values.karpenter.ec2NodeClass.userData | nindent 4 }}
 ---
 apiVersion: karpenter.sh/v1beta1
 kind: NodePool
 metadata:
-  name: {{ .Release.Name }}-karpenter-nodepool
+  name: {{ .Values.karpenter.nodepool.name }}
 spec:
   template:
     metadata:
       labels:
-        type: karpenter
+        type: {{- toYaml .Values.karpenter.nodePool.labels | nindent 8 }}
     spec:
       nodeClassRef:
-        apiVersion: karpenter.k8s.aws/v1beta1
-        kind: EC2NodeClass
-        name: {{ .Release.Name }}-karpenter-ec2nodeclass
+        name: {{ .Values.karpenter.nodePool.nodeClassRef.name }}
       requirements:
         - key: "kubernetes.io/arch"
           operator: In
@@ -37,6 +37,7 @@ spec:
         - key: "topology.kubernetes.io/zone"
           operator: In
           values: {{ .Values.karpenter.nodePool.requirements.zones | toJson }}
+      taints: {{- toYaml .Values.karpenter.nodePool.taints | nindent 8 }}
   limits:
     cpu: {{ .Values.karpenter.nodePool.limits.cpu }}
     memory: {{ .Values.karpenter.nodePool.limits.memory }}
