@@ -18,8 +18,7 @@ metadata:
 spec:
   template:
     metadata:
-      labels:
-        type: {{- toYaml .Values.karpenter.NodePool.labels | nindent 8 }}
+      labels: {{- toYaml .Values.karpenter.NodePool.labels | nindent 8 }}
     spec:
       nodeClassRef:
         name: {{ .Values.karpenter.NodePool.nodeClassRef.name }}
