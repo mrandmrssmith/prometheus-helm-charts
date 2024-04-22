@@ -9,7 +9,8 @@ spec:
   subnetSelectorTerms: {{- toYaml .Values.karpenter.Ec2NodeClass.subnetSelectorTerms | nindent 4}}
   securityGroupSelectorTerms: {{- toYaml .Values.karpenter.Ec2NodeClass.securityGroupSelectorTerms | nindent 4}}
   role: {{ .Values.karpenter.Ec2NodeClass.role }}
-  userData: {{- .Values.karpenter.Ec2NodeClass.userData | nindent 4 }}
+  userData: |-
+{{- .Values.karpenter.Ec2NodeClass.userData | nindent 4 }}
 ---
 apiVersion: karpenter.sh/v1beta1
 kind: NodePool
