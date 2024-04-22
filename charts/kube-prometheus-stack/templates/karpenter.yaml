@@ -1,44 +1,44 @@
 {{- if .Values.karpenter.enabled -}}
 ---
 apiVersion: karpenter.k8s.aws/v1beta1
-kind: EC2NodeClass
+kind: Ec2NodeClass
 metadata:
-  name: {{ .Values.karpenter.ec2NodeClass.name }}
+  name: {{ .Values.karpenter.Ec2NodeClass.name }}
 spec:
-  amiFamily: {{ .Values.karpenter.ec2NodeClass.amiFamily }}
-  subnetSelectorTerms: {{- toYaml .Values.karpenter.ec2NodeClass.subnetSelectorTerms | nindent 4}}
-  securityGroupSelectorTerms: {{- toYaml .Values.karpenter.ec2NodeClass.securityGroupSelectorTerms | nindent 4}}
-  role: {{ .Values.karpenter.ec2NodeClass.role }}
+  amiFamily: {{ .Values.karpenter.Ec2NodeClass.amiFamily }}
+  subnetSelectorTerms: {{- toYaml .Values.karpenter.Ec2NodeClass.subnetSelectorTerms | nindent 4}}
+  securityGroupSelectorTerms: {{- toYaml .Values.karpenter.Ec2NodeClass.securityGroupSelectorTerms | nindent 4}}
+  role: {{ .Values.karpenter.Ec2NodeClass.role }}
   userData: |
-    {{- .Values.karpenter.ec2NodeClass.userData | nindent 4 }}
+    {{- .Values.karpenter.Ec2NodeClass.userData | nindent 4 }}
 ---
 apiVersion: karpenter.sh/v1beta1
-kind: nodePool
+kind: NodePool
 metadata:
-  name: {{ .Values.karpenter.nodePool.name }}
+  name: {{ .Values.karpenter.NodePool.name }}
 spec:
   template:
     metadata:
       labels:
-        type: {{- toYaml .Values.karpenter.nodePool.labels | nindent 8 }}
+        type: {{- toYaml .Values.karpenter.NodePool.labels | nindent 8 }}
     spec:
       nodeClassRef:
-        name: {{ .Values.karpenter.nodePool.nodeClassRef.name }}
+        name: {{ .Values.karpenter.NodePool.nodeClassRef.name }}
       requirements:
         - key: "kubernetes.io/arch"
           operator: In
-          values: {{ .Values.karpenter.nodePool.requirements.arch | toJson }}
+          values: {{ .Values.karpenter.NodePool.requirements.arch | toJson }}
         - key: "karpenter.sh/capacity-type"
           operator: In
-          values: {{ .Values.karpenter.nodePool.requirements.capacityTypes | toJson }}
+          values: {{ .Values.karpenter.NodePool.requirements.capacityTypes | toJson }}
         - key: "karpenter.k8s.aws/instance-family"
           operator: In
-          values: {{ .Values.karpenter.nodePool.requirements.instanceTypes | toJson }}
+          values: {{ .Values.karpenter.NodePool.requirements.instanceTypes | toJson }}
         - key: "topology.kubernetes.io/zone"
           operator: In
-          values: {{ .Values.karpenter.nodePool.requirements.zones | toJson }}
-      taints: {{- toYaml .Values.karpenter.nodePool.taints | nindent 8 }}
+          values: {{ .Values.karpenter.NodePool.requirements.zones | toJson }}
+      taints: {{- toYaml .Values.karpenter.NodePool.taints | nindent 8 }}
   limits:
-    cpu: {{ .Values.karpenter.nodePool.limits.cpu }}
-    memory: {{ .Values.karpenter.nodePool.limits.memory }}
+    cpu: {{ .Values.karpenter.NodePool.limits.cpu }}
+    memory: {{ .Values.karpenter.NodePool.limits.memory }}
 {{- end }}
