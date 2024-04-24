@@ -5,7 +5,7 @@
 # Karpenter provisioner parameters
 karpenter:
   enabled: false
-  Ec2NodeClass:
+  EC2NodeClass:
     name: "prometheus-karpenter-ec2nodeclass"
     amiFamily: ""
     subnetSelectorTerms:
