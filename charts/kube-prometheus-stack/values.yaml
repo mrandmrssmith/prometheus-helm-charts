@@ -7,13 +7,11 @@ karpenter:
   enabled: false
   EC2NodeClass:
     name: "prometheus-karpenter-ec2nodeclass"
-    amiFamily: ""
+    amiFamily: "AL2"
     subnetSelectorTerms:
       - tags: {}
     securityGroupSelectorTerms:
       - tags: {}
-    role: ""
-    userData: ""
   NodePool:
     clusterName: ""
     taints: []
