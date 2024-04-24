@@ -13,6 +13,7 @@ karpenter:
     securityGroupSelectorTerms:
       - tags: {}
     role: ""
+    userData: ""
   NodePool:
     clusterName: ""
     taints: []
