@@ -10,7 +10,7 @@ spec:
   securityGroupSelectorTerms: {{- toYaml .Values.karpenter.EC2NodeClass.securityGroupSelectorTerms | nindent 4}}
   role: {{ .Values.karpenter.EC2NodeClass.role }}
   userData: |-
-{{- .Values.karpenter.EC2NodeClass.userData | nindent 4 }}
+{{- toYaml .Values.karpenter.EC2NodeClass.userData | nindent 4}}
 ---
 apiVersion: karpenter.sh/v1beta1
 kind: NodePool
