@@ -20,7 +20,7 @@ spec:
           values: {{ .Values.karpenter.NodePool.requirements.capacityTypes | toJson }}
         - key: "karpenter.k8s.aws/instance-category"
           operator: In
-          values: {{ .Values.karpenter.NodePool.requirements.instanceFamily | toJson }}
+          values: {{ .Values.karpenter.NodePool.requirements.instanceCategory | toJson }}
         - key: "karpenter.k8s.aws/instance-family"
           operator: In
           values: {{ .Values.karpenter.NodePool.requirements.instanceFamily | toJson }}
