@@ -1,16 +1,4 @@
 {{- if .Values.karpenter.enabled -}}
-# ---
-# apiVersion: karpenter.k8s.aws/v1beta1
-# kind: EC2NodeClass
-# metadata:
-#   name: {{ .Values.karpenter.EC2NodeClass.name }}
-# spec:
-#   amiFamily: {{ .Values.karpenter.EC2NodeClass.amiFamily }}
-#   subnetSelectorTerms: {{- toYaml .Values.karpenter.EC2NodeClass.subnetSelectorTerms | nindent 4}}
-#   securityGroupSelectorTerms: {{- toYaml .Values.karpenter.EC2NodeClass.securityGroupSelectorTerms | nindent 4}}
-#   role: {{ .Values.karpenter.EC2NodeClass.role }}
-#   userData: |-
-# {{- toYaml .Values.karpenter.EC2NodeClass.userData | nindent 4}}
 ---
 apiVersion: karpenter.sh/v1beta1
 kind: NodePool

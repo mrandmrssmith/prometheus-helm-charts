@@ -5,14 +5,6 @@
 # Karpenter provisioner parameters
 karpenter:
   enabled: false
-  # EC2NodeClass:
-  #   name: "prometheus-karpenter-ec2nodeclass"
-  #   amiFamily: "AL2"
-  #   subnetSelectorTerms:
-  #     - tags: {}
-  #   securityGroupSelectorTerms:
-  #     - tags: {}
-  #   role: ""
   NodePool:
     clusterName: ""
     requirements:
