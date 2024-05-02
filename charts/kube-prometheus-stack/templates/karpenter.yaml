@@ -21,6 +21,15 @@ spec:
         - key: "karpenter.k8s.aws/instance-type"
           operator: In
           values: {{ .Values.karpenter.NodePool.requirements.instanceTypes | toJson }}
+        - key: "karpenter.k8s.aws/instance-family"
+          operator: In
+          values: {{ .Values.karpenter.NodePool.requirements.instanceFamily | toJson }}
+        - key: "karpenter.k8s.aws/instance-cpu"
+          operator: In
+          values: {{ .Values.karpenter.NodePool.requirements.instanceCPU | toJson }}
+         - key: "karpenter.k8s.aws/instance-size"
+          operator: In
+          values: {{ .Values.karpenter.NodePool.requirements.instanceSize | toJson }}
         - key: "topology.kubernetes.io/zone"
           operator: In
           values: {{ .Values.karpenter.NodePool.requirements.zones | toJson }}
