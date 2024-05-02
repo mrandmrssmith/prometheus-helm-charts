@@ -8,9 +8,7 @@ karpenter:
   NodePool:
     clusterName: ""
     requirements:
-      instanceCategory: []
-      instanceFamily: []
-      instanceCPU: []
+      instanceTypes: []
       zones: []
       arch: []
       capacityTypes: []
